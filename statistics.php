@@ -1,5 +1,7 @@
 <?php
-session_start();
+
+
+
 require_once("constants.php");
 
 function connectBD($query)
@@ -88,12 +90,12 @@ function getBrowser()
 function updateBrowserTable()
 {
     $browser_name = getBrowser();
-
     echo "<h2 class='browser_name'>Your browser: $browser_name</h2>";
 
-    if ($_SESSION['browser'] != $browser_name) {
+    if ( !isset($_COOKIE['browser'])) {
+        setcookie("browser", getBrowser(), time()+ 500);
 
-        $_SESSION['browser'] = $browser_name;
+        $_COOKIE['browser'] = $browser_name;
         $query = "UPDATE `browsers`
                   SET `view_counter` = `view_counter` + 1
                   WHERE `name` = '$browser_name'";

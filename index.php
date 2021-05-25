@@ -1,5 +1,4 @@
 <?php
-session_start();
 require_once("statistics.php"); ?>
 
 <!DOCTYPE HTML>
